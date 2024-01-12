@@ -16,7 +16,7 @@
                 <div class="p-6 bg-white border-b-solid rounded-3xl">
                     <h6>Riwayat Surat</h6>
                 </div>
-                <form method="get" action="/filter">
+                <form method="get" action="{{ route('filter') }}">
                     <div class="space-y-5 p-2 xl:space-y-0 md:space-y-0">
                         <div class="flex xl:mx-5 gap-2 ">
                             <div>

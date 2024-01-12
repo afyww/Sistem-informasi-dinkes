@@ -5,7 +5,7 @@
         <div class="flex items-center mt-0 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
             <div class="flex items-center md:ml-auto md:pr-4">
                 @if (auth()->user()->level == 'admin')
-                    <form method="GET" action="search">
+                    <form method="GET" action="{{ route('search') }}">
                         <div class="relative flex flex-wrap items-stretch w-fit transition-all rounded-lg ease-soft">
                             <span
                                 class="text-sm ease-soft leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
@@ -22,7 +22,7 @@
             </div>
             <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
                 <li class="flex items-center">
-                    <a href="/profil"
+                    <a href="{{ route('profil') }}"
                         class="block px-0 py-2 font-semibold transition-all ease-nav-brand text-sm text-slate-500">
                         {{ auth()->user()->name }}
                         <i class="fa fa-user ml-2 sm:mr-1"></i>

@@ -20,11 +20,11 @@
                     <h1 class="mt-5 text-2xl font-bold">Pilih Type Surat</h1>
                     <div class="inline-block space-x-4 w-fit md:w-full xl:w-full">
 
-                        <a href="/suratindividu"
+                        <a href="{{ route('suratindividu') }}"
                             class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-full text-sm px-5 py-3">Surat
                             Individu</a>
 
-                        <a href="/suratkolektif"
+                        <a href="{{ route('suratkolektif') }}"
                             class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-full text-sm px-5 py-3">Surat
                             Kolektif</a>
 
