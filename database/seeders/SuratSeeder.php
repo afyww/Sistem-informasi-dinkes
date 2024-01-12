@@ -15,6 +15,8 @@ class SuratSeeder extends Seeder
     {
         $surats = [
             [
+                "no_surat" => "001",
+                "tahun_surat" => "2024",
                 "namavip" => "Dani Miarso",
                 "nipvip" => "32683162",
                 "jbtvip" => "Kepala Divisi",
