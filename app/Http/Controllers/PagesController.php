@@ -20,7 +20,7 @@ class PagesController extends Controller
         return view('history');
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         $grafik = Surat::selectRaw("COUNT(*) as count, DATE_FORMAT(pd_tgl, '%M') as month_name, MONTH(pd_tgl) as month_number")
             ->whereYear('pd_tgl', date('Y'))
@@ -31,8 +31,11 @@ class PagesController extends Controller
         $labels = $grafik->keys();
         $data = $grafik->values();
 
+        $selectedYear2 = $request->input('year', date('Y'));
+        $selectedMonth2 = $request->input('month', date('F'));
+
         $grafik2 = Surat::selectRaw("COUNT(*) as count, nama, DATE_FORMAT(tgl_kegiatan, '%M') as month_name, MONTH(tgl_kegiatan) as month_number")
-            ->whereYear('tgl_kegiatan', date('Y'))
+            ->whereYear('tgl_kegiatan', $selectedYear2)
             ->groupBy('nama', 'month_name', 'month_number')
             ->orderBy('month_number')
             ->get();
@@ -54,77 +57,85 @@ class PagesController extends Controller
                 'borderWidth' => 1,
             ];
         }
+
+
+
+        $selectedYear3 = $request->input('year', date('Y'));
+        // Default to the current month if no specific month is provided
+        $selectedMonth3 = $request->input('month', date('F'));
+
         $grafik3 = Surat::selectRaw("COUNT(*) as count, anggaran, DATE_FORMAT(pd_tgl, '%M') as month_name, MONTH(pd_tgl) as month_number")
-        ->whereYear('pd_tgl', date('Y'))
-        ->groupBy('anggaran', 'month_number', 'month_name')
-        ->orderBy('month_number')
-        ->get();
+            ->whereYear('pd_tgl', $selectedYear3)
+            ->groupBy('anggaran', 'month_number', 'month_name')
+            ->orderBy('month_number')
+            ->get();
 
-    $labels3 = $grafik3->pluck('month_name')->unique()->toArray();
-    $dataSets = [];
 
-    $anggaranTypes = $grafik3->pluck('anggaran')->unique();
+        $labels3 = $grafik3->pluck('month_name')->unique()->toArray();
+        $dataSets = [];
 
-    foreach ($anggaranTypes as $anggaranType) {
-        $data3 = $grafik3->where('anggaran', $anggaranType)->pluck('count','month_name')->toArray();
-        $dataSets[] = [
-            'label' => $anggaranType,
-            'data' => $data3,
-        ];
-    }
+        $anggaranTypes = $grafik3->pluck('anggaran')->unique();
+
+        foreach ($anggaranTypes as $anggaranType) {
+            $data3 = $grafik3->where('anggaran', $anggaranType)->pluck('count', 'month_name')->toArray();
+            $dataSets[] = [
+                'label' => $anggaranType,
+                'data' => $data3,
+            ];
+        }
 
         $total_surat = Surat::count();
         $total_karyawan = Pegawai::count();
         $total_vip = Vip::count();
 
         $anggarantertinggi = Surat::select('anggaran')
-        ->groupBy('anggaran')
-        ->orderByRaw('COUNT(*) DESC')
-        ->limit(1)
-        ->pluck('anggaran')
-        ->first();
+            ->groupBy('anggaran')
+            ->orderByRaw('COUNT(*) DESC')
+            ->limit(1)
+            ->pluck('anggaran')
+            ->first();
 
-        return view('dashboard', compact('total_surat', 'total_vip', 'total_karyawan', 'labels', 'data', 'labels2', 'data2', 'labels3', 'dataSets', 'anggarantertinggi'));
+        return view('dashboard', compact('total_surat', 'total_vip', 'total_karyawan', 'labels', 'data', 'labels2', 'data2', 'labels3', 'dataSets', 'anggarantertinggi', 'selectedYear3', 'selectedMonth3', 'selectedYear3', 'selectedMonth2'));
     }
 
     public function suratindividu()
     {
 
 
-        $pemberi=Vip::all();
-        $namapg=Pegawai::all();
+        $pemberi = Vip::all();
+        $namapg = Pegawai::all();
 
         return view('suratindividu', [
-            'pemberi'=> $pemberi, 'nama'=> $namapg 
+            'pemberi' => $pemberi, 'nama' => $namapg
         ]);
     }
 
     public function suratkolektif()
     {
 
-        $pemberi=Vip::all();
-        $namapg=Pegawai::all();
+        $pemberi = Vip::all();
+        $namapg = Pegawai::all();
 
         return view('suratkolektif', [
-            'pemberi'=> $pemberi, 'nama'=> $namapg 
+            'pemberi' => $pemberi, 'nama' => $namapg
         ]);
     }
 
     public function suratduplikatindividu()
     {
-        $pemberi=Vip::all();
-        $namapg=Pegawai::all();
+        $pemberi = Vip::all();
+        $namapg = Pegawai::all();
         return view('suratduplikat-individu', [
-            'pemberi'=> $pemberi, 'nama'=> $namapg 
+            'pemberi' => $pemberi, 'nama' => $namapg
         ]);
     }
 
     public function suratduplikatkolektif()
     {
-        $pemberi=Vip::all();
-        $namapg=Pegawai::all();
+        $pemberi = Vip::all();
+        $namapg = Pegawai::all();
         return view('suratduplikat-kolektif', [
-            'pemberi'=> $pemberi, 'nama'=> $namapg 
+            'pemberi' => $pemberi, 'nama' => $namapg
         ]);
     }
 
@@ -140,7 +151,6 @@ class PagesController extends Controller
         } else {
             $surat = Surat::all();
         }
-
         return view('history', ['surat' => $surat]);
     }
 }

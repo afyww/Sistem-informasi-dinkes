@@ -57,5 +57,4 @@ Route::middleware(['auth', 'LoginAuth:admin,user'])->group(function () {
     Route::post('/kolektif-pdf', [PdfController::class, 'KolektifPdf'])->name('kolektif-pdf');
     Route::post('/duplikat-pdf-individu', [PdfController::class, 'DuplicatePdfIndividu'])->name('duplikat-pdf-individu');
     Route::post('/duplikat-pdf-kolektif', [PdfController::class, 'DuplicatePdfKolektif'])->name('duplikat-pdf-kolektif');
-
 });

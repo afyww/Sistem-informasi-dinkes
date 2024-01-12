@@ -29,13 +29,23 @@ class PdfController extends Controller
             $selectedProducts = [];
         }
 
-        $datapg = Pegawai::select('nama', 'nip', 'jabatan')
-            ->whereIn('id', $selectedProducts)
-            ->get();
-
         $datapgid = Pegawai::select('nama', 'nip', 'jabatan')
-            ->whereIn('id', $selectedProducts)
-            ->first();
+        ->whereIn('id', $selectedProducts)
+        ->get();
+
+        $nippg = Pegawai::whereIn('id', $selectedProducts)
+        ->pluck('nip')
+        ->implode(', ');
+
+        $namapg = Pegawai::whereIn('id', $selectedProducts)
+        ->pluck('nama')
+        ->implode(', ');
+
+        $jbtpg = Pegawai::whereIn('id', $selectedProducts)
+        ->pluck('jabatan')
+        ->implode(', ');
+
+
 
         // Ambil data dari formulir
         $nama = $request->input('pilih');
@@ -56,7 +66,7 @@ class PdfController extends Controller
                     $jbtvip = $data->jabatan;
                     $nip = $data->nip;
                 }
-                $duplicateData = Surat::where('nama', $datapgid->nama)
+                $duplicateData = Surat::where('nama', $namapg)
                     ->where('tgl_kegiatan', $request->input('tanggal'))
                     ->exists();
                 if ($duplicateData) {
@@ -67,6 +77,7 @@ class PdfController extends Controller
                     return redirect()->back();
                 }
             }
+            
 
 
             $no_surat = $request->input('no_surat');
@@ -157,7 +168,7 @@ class PdfController extends Controller
 
             $this->fpdf->SetFont('Arial', '', 10);
             // Tampilkan data produk dalam PDF
-            foreach ($datapg as $row) {
+            foreach ($datapgid as $row) {
                 $this->fpdf->Ln();
                 $this->fpdf->Cell($columnWidth, 10, $row->nama, 1);
                 $this->fpdf->Cell($columnWidth, 10, $row->nip, 1, 0, 'C');
@@ -205,9 +216,9 @@ class PdfController extends Controller
             $surat->namavip = $peg;
             $surat->nipvip = $nip;
             $surat->jbtvip = $jbtvip;
-            $surat->nip = $datapgid->nip;
-            $surat->nama = $datapgid->nama;
-            $surat->jabatan = $datapgid->jabatan;
+            $surat->nip = $nippg;
+            $surat->nama = $namapg;
+            $surat->jabatan = $jbtpg;
             $surat->atas_dasar = $dasar;
             $surat->dalam_rangka = $rangka;
             $surat->tgl_kegiatan = $tanggal;
