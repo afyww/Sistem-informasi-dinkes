@@ -8,7 +8,6 @@ use App\Models\Vip;
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Database\QueryException;
 
 class PdfController extends Controller
 {
@@ -30,19 +29,13 @@ class PdfController extends Controller
             $selectedProducts = [];
         }
 
-        // Menggunakan Eloquent untuk mengambil data
-        $selectedProductsData = Pegawai::select('nama', 'nip', 'jabatan')
+        $datapg = Pegawai::select('nama', 'nip', 'jabatan')
             ->whereIn('id', $selectedProducts)
             ->get();
 
-        $choose = Pegawai::whereIn('id', $selectedProducts)
-            ->pluck('nip')
-            ->implode(', ');
-
-        $pilih = Pegawai::whereIn('id', $selectedProducts)
-            ->pluck('nama')
-            ->implode(', ');
-
+        $datapgid = Pegawai::select('nama', 'nip', 'jabatan')
+            ->whereIn('id', $selectedProducts)
+            ->first();
 
         // Ambil data dari formulir
         $nama = $request->input('pilih');
@@ -59,12 +52,11 @@ class PdfController extends Controller
         if (is_array($nama)) {
             foreach ($nama as $peg) {
                 $data = Vip::where('nama', $peg)->first();
-
                 if (is_object($data)) {
                     $jbtvip = $data->jabatan;
                     $nip = $data->nip;
                 }
-                $duplicateData = Surat::where('nama', $pilih)
+                $duplicateData = Surat::where('nama', $datapgid->nama)
                     ->where('tgl_kegiatan', $request->input('tanggal'))
                     ->exists();
                 if ($duplicateData) {
@@ -76,9 +68,6 @@ class PdfController extends Controller
                 }
             }
 
-            $jabatan = Pegawai::whereIn('id', $selectedProducts)
-                ->pluck('jabatan')
-                ->implode(', ');
 
             $no_surat = $request->input('no_surat');
             $tahun_surat = $request->input('tahun_surat');
@@ -168,7 +157,7 @@ class PdfController extends Controller
 
             $this->fpdf->SetFont('Arial', '', 10);
             // Tampilkan data produk dalam PDF
-            foreach ($selectedProductsData as $row) {
+            foreach ($datapg as $row) {
                 $this->fpdf->Ln();
                 $this->fpdf->Cell($columnWidth, 10, $row->nama, 1);
                 $this->fpdf->Cell($columnWidth, 10, $row->nip, 1, 0, 'C');
@@ -216,9 +205,9 @@ class PdfController extends Controller
             $surat->namavip = $peg;
             $surat->nipvip = $nip;
             $surat->jbtvip = $jbtvip;
-            $surat->nip = $choose;
-            $surat->nama = $pilih;
-            $surat->jabatan = $jabatan;
+            $surat->nip = $datapgid->nip;
+            $surat->nama = $datapgid->nama;
+            $surat->jabatan = $datapgid->jabatan;
             $surat->atas_dasar = $dasar;
             $surat->dalam_rangka = $rangka;
             $surat->tgl_kegiatan = $tanggal;
@@ -249,22 +238,9 @@ class PdfController extends Controller
             $selectedProducts = [];
         }
 
-        // Menggunakan Eloquent untuk mengambil data
-        $selectedProductsData = Pegawai::select('nama', 'nip', 'jabatan')
+        $datapg = Pegawai::select('nama', 'nip', 'jabatan')
             ->whereIn('id', $selectedProducts)
-            ->get();
-
-        $choose = Pegawai::whereIn('id', $selectedProducts)
-            ->pluck('nip')
-            ->implode(', ');
-
-        $pilih = Pegawai::whereIn('id', $selectedProducts)
-            ->pluck('nama')
-            ->implode(', ');
-
-        $jabatan = Pegawai::whereIn('id', $selectedProducts)
-            ->pluck('jabatan')
-            ->implode(', ');
+            ->first();
 
         $nama = $request->input('pilih');
         $peg = null;
@@ -286,7 +262,7 @@ class PdfController extends Controller
                     $nip = $data->nip;
                 }
 
-                $duplicateData = Surat::where('nama', $pilih)
+                $duplicateData = Surat::where('nama', $datapg->nama)
                     ->where('tgl_kegiatan', $request->tanggal)
                     ->first();
                 if ($duplicateData) {
@@ -350,11 +326,11 @@ class PdfController extends Controller
 
             $this->fpdf->MultiCell(0, 0.5, 'Memberikan tugas kepada :', 0, 'L');
             $this->fpdf->Ln(7);
-            $this->fpdf->MultiCell(0, 1, "Nama                          : $pilih", 0, 'L');
+            $this->fpdf->MultiCell(0, 1, "Nama                          : $datapg->nama", 0, 'L');
             $this->fpdf->Ln(7);
-            $this->fpdf->MultiCell(0, 1, "NIP                              : $choose", 0, 'L');
+            $this->fpdf->MultiCell(0, 1, "NIP                              : $datapg->nip", 0, 'L');
             $this->fpdf->Ln(7);
-            $this->fpdf->MultiCell(0, 1, "Jabatan                       : $jabatan", 0, 'L');
+            $this->fpdf->MultiCell(0, 1, "Jabatan                       : $datapg->jabatan", 0, 'L');
             $this->fpdf->Ln(17);
 
             $this->fpdf->SetFont('Arial', '', 12);
@@ -397,9 +373,9 @@ class PdfController extends Controller
             $surat->namavip = $peg;
             $surat->nipvip = $nip;
             $surat->jbtvip = $jbtvip;
-            $surat->nip = $choose;
-            $surat->nama = $pilih;
-            $surat->jabatan = $jabatan;
+            $surat->nip = $datapg->nip;
+            $surat->nama = $datapg->nama;
+            $surat->jabatan = $datapg->jabatan;
             $surat->atas_dasar = $dasar;
             $surat->dalam_rangka = $rangka;
             $surat->tgl_kegiatan = $tanggal;
@@ -431,21 +407,9 @@ class PdfController extends Controller
         }
 
         // Menggunakan Eloquent untuk mengambil data
-        $selectedProductsData = Pegawai::select('nama', 'nip', 'jabatan')
+        $datapg = Pegawai::select('nama', 'nip', 'jabatan')
             ->whereIn('id', $selectedProducts)
-            ->get();
-
-        $choose = Pegawai::whereIn('id', $selectedProducts)
-            ->pluck('nip')
-            ->implode(', ');
-
-        $pilih = Pegawai::whereIn('id', $selectedProducts)
-            ->pluck('nama')
-            ->implode(', ');
-
-        $jabatan = Pegawai::whereIn('id', $selectedProducts)
-            ->pluck('jabatan')
-            ->implode(', ');
+            ->first();
 
         $nama = $request->input('pilih');
         $peg = null;
@@ -521,11 +485,11 @@ class PdfController extends Controller
 
             $this->fpdf->MultiCell(0, 0.5, 'Memberikan tugas kepada :', 0, 'L');
             $this->fpdf->Ln(7);
-            $this->fpdf->MultiCell(0, 1, "Nama                          : $pilih", 0, 'L');
+            $this->fpdf->MultiCell(0, 1, "Nama                          : $datapg->nama", 0, 'L');
             $this->fpdf->Ln(7);
-            $this->fpdf->MultiCell(0, 1, "NIP                              : $choose", 0, 'L');
+            $this->fpdf->MultiCell(0, 1, "NIP                              : $datapg->nip", 0, 'L');
             $this->fpdf->Ln(7);
-            $this->fpdf->MultiCell(0, 1, "Jabatan                       : $jabatan", 0, 'L');
+            $this->fpdf->MultiCell(0, 1, "Jabatan                       : $datapg->jabatan", 0, 'L');
             $this->fpdf->Ln(17);
 
             $this->fpdf->SetFont('Arial', '', 12);
@@ -568,9 +532,9 @@ class PdfController extends Controller
             $surat->namavip = $peg;
             $surat->nipvip = $nip;
             $surat->jbtvip = $jbtvip;
-            $surat->nip = $choose;
-            $surat->nama = $pilih;
-            $surat->jabatan = $jabatan;
+            $surat->nip = $datapg->nip;
+            $surat->nama = $datapg->nama;
+            $surat->jabatan = $datapg->jabatan;
             $surat->atas_dasar = $dasar;
             $surat->dalam_rangka = $rangka;
             $surat->tgl_kegiatan = $tanggal;
@@ -603,25 +567,19 @@ class PdfController extends Controller
         }
 
         // Menggunakan Eloquent untuk mengambil data
-        $selectedProductsData = Pegawai::select('nama', 'nip', 'jabatan')
+        $datapg = Pegawai::select('nama', 'nip', 'jabatan')
             ->whereIn('id', $selectedProducts)
             ->get();
 
-        $choose = Pegawai::whereIn('id', $selectedProducts)
-            ->pluck('nip')
-            ->implode(', ');
-
-        $pilih = Pegawai::whereIn('id', $selectedProducts)
-            ->pluck('nama')
-            ->implode(', ');
-
+        $datapgid = Pegawai::select('nama', 'nip', 'jabatan')
+            ->whereIn('id', $selectedProducts)
+            ->first();
 
         // Ambil data dari formulir
         $nama = $request->input('pilih');
         $peg = null;
         $nip = null;
         $jbtvip = null;
-
         $duplicateSurat = Surat::where('no_surat', $request->no_surat)
         ->where('tahun_surat', $request->tahun_surat)
         ->first();
@@ -633,29 +591,14 @@ class PdfController extends Controller
         if (is_array($nama)) {
             foreach ($nama as $peg) {
                 $data = Vip::where('nama', $peg)->first();
-
                 if (is_object($data)) {
                     $jbtvip = $data->jabatan;
                     $nip = $data->nip;
                 }
-                $duplicateData = Surat::where('nama', $pilih)
-                    ->where('tgl_kegiatan', $request->input('tanggal'))
-                    ->exists();
-                if ($duplicateData) {
-                    alert()->question('Data Sudah Ada !', 'Tetap Bikin Surat ?')
-                        ->showCancelButton('<a href="suratkolektif">Cancel</a>')
-                        ->showConfirmButton('<a href="suratduplikatkolektif">Tetap Buat</a>')
-                        ->focusConfirm(true);
-                    return redirect()->back();
-                }
             }
 
-            $jabatan = Pegawai::whereIn('id', $selectedProducts)
-                ->pluck('jabatan')
-                ->implode(', ');
-
-                $no_surat = $request->input('no_surat');
-                $tahun_surat = $request->input('tahun_surat');
+            $no_surat = $request->input('no_surat');
+            $tahun_surat = $request->input('tahun_surat');
             $dasar = $request->input('dasar');
             $rangka = $request->input('rangka');
             $tanggal = $request->input('tanggal');
@@ -741,7 +684,7 @@ class PdfController extends Controller
 
             $this->fpdf->SetFont('Arial', '', 10);
             // Tampilkan data produk dalam PDF
-            foreach ($selectedProductsData as $row) {
+            foreach ($datapg as $row) {
                 $this->fpdf->Ln();
                 $this->fpdf->Cell($columnWidth, 10, $row->nama, 1);
                 $this->fpdf->Cell($columnWidth, 10, $row->nip, 1, 0, 'C');
@@ -789,9 +732,9 @@ class PdfController extends Controller
             $surat->namavip = $peg;
             $surat->nipvip = $nip;
             $surat->jbtvip = $jbtvip;
-            $surat->nip = $choose;
-            $surat->nama = $pilih;
-            $surat->jabatan = $jabatan;
+            $surat->nip = $datapgid->nip;
+            $surat->nama = $datapgid->nama;
+            $surat->jabatan = $datapgid->jabatan;
             $surat->atas_dasar = $dasar;
             $surat->dalam_rangka = $rangka;
             $surat->tgl_kegiatan = $tanggal;

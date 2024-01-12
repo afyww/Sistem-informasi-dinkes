@@ -90,22 +90,42 @@ class PagesController extends Controller
     public function suratindividu()
     {
 
-        return view('suratindividu');
+
+        $pemberi=Vip::all();
+        $namapg=Pegawai::all();
+
+        return view('suratindividu', [
+            'pemberi'=> $pemberi, 'nama'=> $namapg 
+        ]);
     }
 
     public function suratkolektif()
     {
-        return view('suratkolektif');
+
+        $pemberi=Vip::all();
+        $namapg=Pegawai::all();
+
+        return view('suratkolektif', [
+            'pemberi'=> $pemberi, 'nama'=> $namapg 
+        ]);
     }
 
     public function suratduplikatindividu()
     {
-        return view('suratduplikat-individu');
+        $pemberi=Vip::all();
+        $namapg=Pegawai::all();
+        return view('suratduplikat-individu', [
+            'pemberi'=> $pemberi, 'nama'=> $namapg 
+        ]);
     }
 
     public function suratduplikatkolektif()
     {
-        return view('suratduplikat-kolektif');
+        $pemberi=Vip::all();
+        $namapg=Pegawai::all();
+        return view('suratduplikat-kolektif', [
+            'pemberi'=> $pemberi, 'nama'=> $namapg 
+        ]);
     }
 
     public function profil()

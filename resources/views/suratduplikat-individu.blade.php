@@ -45,27 +45,13 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5"
                                     required>
                                     <option>
-                                        <?php
-                                        // Koneksi ke database
-                                        $mysqli = new mysqli('localhost:3306', 'root', '', 'dinkes');
-                                        
-                                        // Periksa koneksi
-                                        if ($mysqli->connect_error) {
-                                            die('Koneksi Gagal: ' . $mysqli->connect_error);
-                                        }
-                                        
-                                        // Query untuk mengambil produk dari database
-                                        $query = 'SELECT * FROM vips';
-                                        $result = $mysqli->query($query);
-                                        $out = '';
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            $out .= '<option>' . $row['nama'] . '</option>';
-                                        }
-                                        echo $out;
-                                        
-                                        $mysqli->close();
-                                        ?>
                                     </option>
+                                    @foreach ($pemberi as $namavip )
+                                        <option>
+                                            {{ $namavip->nama }}
+                                        </option>
+
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="space-y-2">
@@ -75,26 +61,13 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5"
                                     required>
                                     <option>
-                                        <?php
-                                        // Koneksi ke database
-                                        $mysqli = new mysqli('localhost:3306', 'root', '', 'dinkes');
-                                        // Periksa koneksi
-                                        if ($mysqli->connect_error) {
-                                            die('Koneksi Gagal: ' . $mysqli->connect_error);
-                                        }
-                                        // Query untuk mengambil produk dari database
-                                        $query = 'SELECT * FROM tb_pegawai';
-                                        $result = $mysqli->query($query);
-                                        // Tampilkan opsi produk
-                                        while ($row = $result->fetch_assoc()) {
-                                            echo "<option value='{$row['id']}'>{$row['nama']}</option>";
-                                        }
-                                        
-                                        // Tutup koneksi
-                                        $mysqli->close();
-                                        
-                                        ?>
                                     </option>
+                                    @foreach ($nama as $namapg )
+                                        <option value={{ $namapg->id }}>
+                                            {{ $namapg->nama }}
+                                        </option>
+
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="space-y-2">
