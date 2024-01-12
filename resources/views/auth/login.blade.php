@@ -24,7 +24,7 @@
                                     <p class="mb-0">Enter your email and password to sign in</p>
                                 </div>
                                 <div class="flex-auto p-6">
-                                    <form method="post" action="/login">
+                                    <form method="post" action="{{ route('login') }}">
                                         @csrf
                                         <label for="email" class="mb-2 ml-1 font-bold text-xs text-slate-700">Email</label>
                                         <div class="mb-4">

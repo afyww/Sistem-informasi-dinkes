@@ -84,7 +84,7 @@
             @if (auth()->user()->level == 'admin')
                 <li class="mt-2">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:text-black"
-                        href="{{ route('indexvip') }}">
+                        href="{{ route('draftvip.indexvip') }}">
                         <div
                             class="bg-gradient-to-tl from-red-700 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                             <svg fill="#000000" width="12px" height="12px" viewBox="0 0 36 36"
@@ -102,7 +102,7 @@
                 </li>
                 <li class="mt-2">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:text-black"
-                        href="{{ route('index') }}">
+                        href="{{ route('draft.index') }}">
                         <div
                             class="bg-gradient-to-tl from-red-700 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                             <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"
