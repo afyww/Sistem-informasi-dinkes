@@ -138,7 +138,7 @@
                     <div class="p-4">
                         <div>
                             <label for="monthSelect2">Select Month:</label>
-                            <select id="monthSelect2" onchange="updateChart2()">
+                            <select class="border bg-gray-100 p-2 rounded-xl" id="monthSelect2" onchange="updateChart2()">
                                 @foreach ($labels2 as $month)
                                     <option value="{{ $month }}"
                                         {{ $selectedMonth2 == $month ? 'selected' : '' }}>{{ $month }}</option>
@@ -161,7 +161,7 @@
                     <div class="p-4">
                         <div>
                             <label for="monthSelect">Select Month:</label>
-                            <select id="monthSelect" onchange="updateChart()">
+                            <select class="border bg-gray-100 p-2 rounded-xl" id="monthSelect" onchange="updateChart()">
                                 @foreach ($labels3 as $month3)
                                     <option value="{{ $month3 }}"
                                         {{ $selectedMonth3 == $month3 ? 'selected' : '' }}>{{ $month3 }}</option>
