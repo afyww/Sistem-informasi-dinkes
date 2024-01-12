@@ -9,14 +9,14 @@ use App\Http\Controllers\SuratController;
 use App\Http\Controllers\VipController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('/logout', [LoginController::class, 'logout']);
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.auth');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout.auth');
 
 
 Route::middleware(['auth', 'LoginAuth:admin'])->group(function () {
-    Route::get('/dashboard', [PagesController::class, 'dashboard']);
-    Route::get('/buatsurat', [PagesController::class, 'buatsurat']);
-    Route::get('/profil', [PagesController::class, 'profil']);
+    Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
+    Route::get('/buatsurat', [PagesController::class, 'buatsurat'])->name('buatsurat');
+    Route::get('/profil', [PagesController::class, 'profil'])->name('profil');
     Route::get('/search', [PagesController::class, 'search'])->name('search');
     Route::get('/history', [SuratController::class, 'index'])->name('history');
     Route::get('/filter', [SuratController::class, 'filter'])->name('filter');
@@ -45,9 +45,9 @@ Route::middleware(['auth', 'LoginAuth:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'LoginAuth:admin,user'])->group(function () {
-    Route::get('/dashboard', [PagesController::class, 'dashboard']);
-    Route::get('/buatsurat', [PagesController::class, 'buatsurat']);
-    Route::get('/profil', [PagesController::class, 'profil']);
+    Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
+    Route::get('/buatsurat', [PagesController::class, 'buatsurat'])->name('buatsurat');
+    Route::get('/profil', [PagesController::class, 'profil'])->name('profil');
     Route::get('/filter', [SuratController::class, 'filter'])->name('filter');
     Route::get('/suratindividu', [PagesController::class, 'suratindividu'])->name('suratindividu');
     Route::get('/suratkolektif', [PagesController::class, 'suratkolektif'])->name('suratkolektif');

@@ -1,7 +1,7 @@
 <aside class="max-w-62.5 md:max-w-62.5 xl:max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-8 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between rounded-3xl  bg-white p-0 antialiased shadow-2xl transition-transform duration-200 xl:translate-x-0 xl:bg-transparent max-h-none md:max-h-none xl:max-h-none 2xl:max-h-none">
         <i class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
             sidenav-close></i>
-        <a class="block px-8 py-6 m-0 text-2xl whitespace-nowrap text-slate-700" href="/dashboard">
+        <a class="block px-8 py-6 m-0 text-2xl whitespace-nowrap text-slate-700" href="{{ route('dashboard') }}">
             <img src="{{ asset('assets/img/Logo.png') }}"
                 class="inline transition-all duration-200 ease-nav-brand h-10" alt="main_logo" />
             <span class="ml-8 font-bold text-4xl">P2P</span>
@@ -39,7 +39,7 @@
 
             <li class="mt-2">
                 <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:text-black"
-                    href="/buatsurat">
+                    href="{{ route('buatsurat') }}">
                     <div
                         class="bg-gradient-to-tl from-red-400 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
 
@@ -68,14 +68,14 @@
             </li>
             <li class="mt-2 ml-10">
                 <a class="py-2 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:text-black"
-                    href="/suratindividu">
+                    href="{{ route('suratindividu') }}">
                     <span class="ml-1 font-semibold">Surat Individu</span>
                 </a>
             </li>
             <hr class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-black to-transparent" />
             <li class="mt-2 ml-10">
                 <a class="py-2 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:text-black"
-                    href="/suratkolektif">
+                    href="{{ route('suratkolektif') }}">
                     <span class="ml-1 font-semibold">Surat Kolektif</span>
                 </a>
             </li>
@@ -84,7 +84,7 @@
             @if (auth()->user()->level == 'admin')
                 <li class="mt-2">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:text-black"
-                        href="/indexvip">
+                        href="{{ route('indexvip') }}">
                         <div
                             class="bg-gradient-to-tl from-red-700 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                             <svg fill="#000000" width="12px" height="12px" viewBox="0 0 36 36"
@@ -102,7 +102,7 @@
                 </li>
                 <li class="mt-2">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:text-black"
-                        href="/index">
+                        href="{{ route('index') }}">
                         <div
                             class="bg-gradient-to-tl from-red-700 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                             <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"
@@ -132,7 +132,7 @@
                 </li>
                 <li class="mt-2 mb-4">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:text-black"
-                        href="/history">
+                        href="{{ route('history') }}">
                         <div
                             class="bg-gradient-to-tl from-red-700 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                             <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
@@ -162,7 +162,7 @@
 
             <li class="mt-5">
                 <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:text-black"
-                    href="/logout">
+                    href="{{ route('logout') }}">
                     <div
                         class="bg-gradient-to-tl from-red-700 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <svg width="12px" height="12px" viewBox="0 0 16 16" version="1.1"
