@@ -25,6 +25,20 @@
                         @csrf
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-2">
                             <div class="space-y-2">
+                                <label class="block font-semibold text-black">No Surat
+                                    :</label>
+                                <input type="text" name="no_surat"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5"
+                                    required>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block font-semibold text-black">Tahun Surat
+                                    :</label>
+                                <input type="text" name="tahun_surat"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5"
+                                    required>
+                            </div>    
+                            <div class="space-y-2">
                                 <label class="block font-semibold text-black">Nama Pemberi
                                     Tugas :</label>
                                 <select id="pilih" name="pilih[]"

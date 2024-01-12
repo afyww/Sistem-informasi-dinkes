@@ -49,6 +49,13 @@ class PdfController extends Controller
         $peg = null;
         $nip = null;
         $jbtvip = null;
+        $duplicateSurat = Surat::where('no_surat', $request->no_surat)
+            ->where('tahun_surat', $request->tahun_surat)
+            ->first();
+        if ($duplicateSurat) {
+            alert()->info('Nomor Surat Sudah Ada !');
+            return redirect()->back();
+        }
         if (is_array($nama)) {
             foreach ($nama as $peg) {
                 $data = Vip::where('nama', $peg)->first();
@@ -73,6 +80,8 @@ class PdfController extends Controller
                 ->pluck('jabatan')
                 ->implode(', ');
 
+            $no_surat = $request->input('no_surat');
+            $tahun_surat = $request->input('tahun_surat');
             $dasar = $request->input('dasar');
             $rangka = $request->input('rangka');
             $tanggal = $request->input('tanggal');
@@ -102,11 +111,15 @@ class PdfController extends Controller
             $this->fpdf->Line(8, 28, 200, 28);
             $this->fpdf->SetLineWidth(0);
             $this->fpdf->Line(8, 29, 200, 29);
+            
 
             $this->fpdf->SetFont('Arial', 'B', 15);
             $this->fpdf->SetY(39);
             $this->fpdf->MultiCell(0, 3, 'SURAT PERINTAH TUGAS', 0, 'C');
             $this->fpdf->Line(70, 43, 140, 43);
+            $this->fpdf->Ln(3);
+            $this->fpdf->SetFont('Arial', '', 13);
+            $this->fpdf->MultiCell(0, 3, "NOMOR : 800 / $no_surat / $tahun_surat", 0, 'C');
 
             $this->fpdf->SetFont('Arial', '', 12);
             $this->fpdf->SetY(60);
@@ -193,17 +206,13 @@ class PdfController extends Controller
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
-            $this->fpdf->MultiCell(180, 0.5, $peg, 0, 'R', false);
+            $this->fpdf->MultiCell(175, 0.5, ($peg), 0, 'R', false);
             $this->fpdf->Ln(2);
-
-            $this->fpdf->SetY($this->fpdf->GetY() + 0); // Meningkatkan posisi vertikal untuk TTD
-            $this->fpdf->Line(150, $this->fpdf->GetY(), 200, $this->fpdf->GetY());
-            $this->fpdf->Ln(2);
-            $this->fpdf->SetX(10);
-            $this->fpdf->MultiCell(176, 0.5, $nip, 10, 'R');
 
             // Simpan data surat ke dalam database
             $surat = new Surat();
+            $surat->no_surat = $no_surat;
+            $surat->tahun_surat = $tahun_surat;
             $surat->namavip = $peg;
             $surat->nipvip = $nip;
             $surat->jbtvip = $jbtvip;
@@ -261,6 +270,14 @@ class PdfController extends Controller
         $peg = null;
         $nip = null;
         $jbtvip = null;
+
+        $duplicateSurat = Surat::where('no_surat', $request->no_surat)
+        ->where('tahun_surat', $request->tahun_surat)
+        ->first();
+    if ($duplicateSurat) {
+        alert()->info('Nomor Surat Sudah Ada !');
+        return redirect()->back();
+    }
         if (is_array($nama)) {
             foreach ($nama as $peg) {
                 $data = Vip::where('nama', $peg)->first();
@@ -280,6 +297,9 @@ class PdfController extends Controller
                     return redirect()->back();
                 }
             }
+
+            $no_surat = $request->input('no_surat');
+            $tahun_surat = $request->input('tahun_surat');
             $dasar = $request->input('dasar');
             $rangka = $request->input('rangka');
             $tanggal = $request->input('tanggal');
@@ -313,6 +333,9 @@ class PdfController extends Controller
             $this->fpdf->SetY(39);
             $this->fpdf->MultiCell(0, 3, 'SURAT PERINTAH TUGAS', 0, 'C');
             $this->fpdf->Line(70, 43, 140, 43);
+            $this->fpdf->Ln(3);
+            $this->fpdf->SetFont('Arial', '', 13);
+            $this->fpdf->MultiCell(0, 3, "NOMOR : 800 / $no_surat / $tahun_surat", 0, 'C');
 
             $this->fpdf->SetFont('Arial', '', 12);
             $this->fpdf->SetY(60);
@@ -364,17 +387,13 @@ class PdfController extends Controller
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
-            $this->fpdf->MultiCell(180, 0.5, $peg, 0, 'R', false);
+            $this->fpdf->MultiCell(175, 0.5, ($peg), 0, 'R', false);
             $this->fpdf->Ln(2);
-
-            $this->fpdf->SetY($this->fpdf->GetY() + 0); // Meningkatkan posisi vertikal untuk TTD
-            $this->fpdf->Line(150, $this->fpdf->GetY(), 200, $this->fpdf->GetY());
-            $this->fpdf->Ln(2);
-            $this->fpdf->SetX(10);
-            $this->fpdf->MultiCell(176, 0.5, $nip, 10, 'R');
 
             // Simpan data surat ke dalam database
             $surat = new Surat();
+            $surat->no_surat = $no_surat;
+            $surat->tahun_surat = $tahun_surat;
             $surat->namavip = $peg;
             $surat->nipvip = $nip;
             $surat->jbtvip = $jbtvip;
@@ -432,6 +451,15 @@ class PdfController extends Controller
         $peg = null;
         $nip = null;
         $jbtvip = null;
+
+        $duplicateSurat = Surat::where('no_surat', $request->no_surat)
+        ->where('tahun_surat', $request->tahun_surat)
+        ->first();
+    if ($duplicateSurat) {
+        alert()->info('Nomor Surat Sudah Ada !');
+        return redirect()->back();
+    }
+
         if (is_array($nama)) {
             foreach ($nama as $peg) {
                 $data = Vip::where('nama', $peg)->first();
@@ -439,8 +467,10 @@ class PdfController extends Controller
                     $jbtvip = $data->jabatan;
                     $nip = $data->nip;
                 }
-
             }
+
+            $no_surat = $request->input('no_surat');
+            $tahun_surat = $request->input('tahun_surat');
             $dasar = $request->input('dasar');
             $rangka = $request->input('rangka');
             $tanggal = $request->input('tanggal');
@@ -474,6 +504,9 @@ class PdfController extends Controller
             $this->fpdf->SetY(39);
             $this->fpdf->MultiCell(0, 3, 'SURAT PERINTAH TUGAS', 0, 'C');
             $this->fpdf->Line(70, 43, 140, 43);
+            $this->fpdf->Ln(3);
+            $this->fpdf->SetFont('Arial', '', 13);
+            $this->fpdf->MultiCell(0, 3, "NOMOR : 800 / $no_surat / $tahun_surat", 0, 'C');
 
             $this->fpdf->SetFont('Arial', '', 12);
             $this->fpdf->SetY(60);
@@ -525,17 +558,13 @@ class PdfController extends Controller
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
-            $this->fpdf->MultiCell(180, 0.5, $peg, 0, 'R', false);
+            $this->fpdf->MultiCell(175, 0.5, ($peg), 0, 'R', false);
             $this->fpdf->Ln(2);
-
-            $this->fpdf->SetY($this->fpdf->GetY() + 0); // Meningkatkan posisi vertikal untuk TTD
-            $this->fpdf->Line(150, $this->fpdf->GetY(), 200, $this->fpdf->GetY());
-            $this->fpdf->Ln(2);
-            $this->fpdf->SetX(10);
-            $this->fpdf->MultiCell(176, 0.5, $nip, 10, 'R');
 
             // Simpan data surat ke dalam database
             $surat = new Surat();
+            $surat->no_surat = $no_surat;
+            $surat->tahun_surat = $tahun_surat;
             $surat->namavip = $peg;
             $surat->nipvip = $nip;
             $surat->jbtvip = $jbtvip;
@@ -592,6 +621,15 @@ class PdfController extends Controller
         $peg = null;
         $nip = null;
         $jbtvip = null;
+
+        $duplicateSurat = Surat::where('no_surat', $request->no_surat)
+        ->where('tahun_surat', $request->tahun_surat)
+        ->first();
+    if ($duplicateSurat) {
+        alert()->info('Nomor Surat Sudah Ada !');
+        return redirect()->back();
+    }
+
         if (is_array($nama)) {
             foreach ($nama as $peg) {
                 $data = Vip::where('nama', $peg)->first();
@@ -616,6 +654,8 @@ class PdfController extends Controller
                 ->pluck('jabatan')
                 ->implode(', ');
 
+                $no_surat = $request->input('no_surat');
+                $tahun_surat = $request->input('tahun_surat');
             $dasar = $request->input('dasar');
             $rangka = $request->input('rangka');
             $tanggal = $request->input('tanggal');
@@ -650,6 +690,9 @@ class PdfController extends Controller
             $this->fpdf->SetY(39);
             $this->fpdf->MultiCell(0, 3, 'SURAT PERINTAH TUGAS', 0, 'C');
             $this->fpdf->Line(70, 43, 140, 43);
+            $this->fpdf->Ln(3);
+            $this->fpdf->SetFont('Arial', '', 13);
+            $this->fpdf->MultiCell(0, 3, "NOMOR : 800 / $no_surat / $tahun_surat", 0, 'C');
 
             $this->fpdf->SetFont('Arial', '', 12);
             $this->fpdf->SetY(60);
@@ -736,17 +779,13 @@ class PdfController extends Controller
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
-            $this->fpdf->MultiCell(180, 0.5, $peg, 0, 'R', false);
+            $this->fpdf->MultiCell(175, 0.5, ($peg), 0, 'R', false);
             $this->fpdf->Ln(2);
-
-            $this->fpdf->SetY($this->fpdf->GetY() + 0); // Meningkatkan posisi vertikal untuk TTD
-            $this->fpdf->Line(150, $this->fpdf->GetY(), 200, $this->fpdf->GetY());
-            $this->fpdf->Ln(2);
-            $this->fpdf->SetX(10);
-            $this->fpdf->MultiCell(176, 0.5, $nip, 10, 'R');
 
             // Simpan data surat ke dalam database
             $surat = new Surat();
+            $surat->no_surat = $no_surat;
+            $surat->tahun_surat = $tahun_surat;
             $surat->namavip = $peg;
             $surat->nipvip = $nip;
             $surat->jbtvip = $jbtvip;
@@ -776,6 +815,8 @@ class PdfController extends Controller
     public function download(Request $request)
     {
         $surat = Surat::where('id', $request->id)->first();
+        $no_surat = $surat->no_surat;
+        $tahun_surat = $surat->tahun_surat;
         $namavip = $surat->namavip;
         $nipvip = $surat->nipvip;
         $jbtvip = $surat->jbtvip;
@@ -791,8 +832,7 @@ class PdfController extends Controller
         $anggaran = $surat->anggaran;
         $typesurat = $surat->typesurat;
 
-        if ($typesurat == 'individu')
-        {
+        if ($typesurat == 'individu') {
             $this->fpdf->SetFont('Arial', 'B', 12);
             $this->fpdf->AddPage();
             $this->fpdf->Image(public_path('assets/img/logo.jpg'), 10, 6, 34, 22);
@@ -817,6 +857,9 @@ class PdfController extends Controller
             $this->fpdf->SetY(39);
             $this->fpdf->MultiCell(0, 3, 'SURAT PERINTAH TUGAS', 0, 'C');
             $this->fpdf->Line(70, 43, 140, 43);
+            $this->fpdf->Ln(3);
+            $this->fpdf->SetFont('Arial', '', 13);
+            $this->fpdf->MultiCell(0, 3, "NOMOR : 800 / $no_surat / $tahun_surat", 0, 'C');
 
             $this->fpdf->SetFont('Arial', '', 12);
             $this->fpdf->SetY(60);
@@ -868,15 +911,8 @@ class PdfController extends Controller
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
-            $teks = "(Syahrul David)";
-            $this->fpdf->MultiCell(180, 0.5, $teks, 0, 'R', false);
+            $this->fpdf->MultiCell(175, 0.5, ($namavip), 0, 'R', false);
             $this->fpdf->Ln(2);
-
-            $this->fpdf->SetY($this->fpdf->GetY() + 0); // Meningkatkan posisi vertikal untuk TTD
-            $this->fpdf->Line(150, $this->fpdf->GetY(), 200, $this->fpdf->GetY());
-            $this->fpdf->Ln(2);
-            $this->fpdf->SetX(10);
-            $this->fpdf->MultiCell(176, 0.5, '(32600010)', 10, 'R');
 
             // Tambahkan tombol "Kembali ke Form" dengan JavaScript
             $this->fpdf->SetTextColor(0, 0, 255);
@@ -914,6 +950,9 @@ class PdfController extends Controller
             $this->fpdf->SetY(39);
             $this->fpdf->MultiCell(0, 3, 'SURAT PERINTAH TUGAS', 0, 'C');
             $this->fpdf->Line(70, 43, 140, 43);
+            $this->fpdf->Ln(3);
+            $this->fpdf->SetFont('Arial', '', 13);
+            $this->fpdf->MultiCell(0, 3, "NOMOR : 800 / $no_surat / $tahun_surat", 0, 'C');
 
             $this->fpdf->SetFont('Arial', '', 12);
             $this->fpdf->SetY(60);
@@ -1000,14 +1039,8 @@ class PdfController extends Controller
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
-            $this->fpdf->MultiCell(180, 0.5, $namavip, 0, 'R', false);
+            $this->fpdf->MultiCell(175, 0.5, ($namavip), 0, 'R', false);
             $this->fpdf->Ln(2);
-
-            $this->fpdf->SetY($this->fpdf->GetY() + 0); // Meningkatkan posisi vertikal untuk TTD
-            $this->fpdf->Line(150, $this->fpdf->GetY(), 200, $this->fpdf->GetY());
-            $this->fpdf->Ln(2);
-            $this->fpdf->SetX(10);
-            $this->fpdf->MultiCell(176, 0.5, $nip, 10, 'R');
 
             // Tambahkan tombol "Kembali ke Form" dengan JavaScript
             $this->fpdf->SetTextColor(0, 0, 255);

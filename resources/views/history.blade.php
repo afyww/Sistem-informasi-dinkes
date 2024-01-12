@@ -17,7 +17,7 @@
                     <h6>Riwayat Surat</h6>
                 </div>
                 <form method="get" action="/filter">
-                    <div class="grid grid-cols-1 space-y-5 p-2 xl:space-y-0 md:space-y-0">
+                    <div class="space-y-5 p-2 xl:space-y-0 md:space-y-0">
                         <div class="flex xl:mx-5 gap-2 ">
                             <div>
                                 <label for="date" class=" text-stone-600">Dari
@@ -39,21 +39,6 @@
                                 class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br rounded-3xl text-sm px-8 py-2"
                                 type="submit">Export
                             </a>
-                            <div class="relative">
-                                <button dropdown-trigger aria-expanded="false" type="button" class="inline-block px-6 py-2 mr-3 text-center rounded-3xl text-sm text-white align-middle transition-all cursor-pointer bg-black leading-pro ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 active:opacity-85">Type Surat</button>
-                                <p class="hidden transform-dropdown-show"></p>
-                                <ul dropdown-menu class="z-10 text-sm lg:shadow-soft-3xl duration-250 before:duration-350 before:font-awesome before:ease-soft min-w-44 before:text-5.5 transform-dropdown pointer-events-none absolute left-auto top-1/2 m-0 -mr-4 mt-2 list-none rounded-lg border-0 border-solid border-transparent bg-black bg-clip-padding px-0 py-2 text-left text-slate-500 opacity-0 transition-all before:absolute before:right-7 before:left-auto before:top-0 before:z-40 before:text-white before:transition-all before:content-['\f0d8']">
-                                  <li>
-                                    <a class="py-1.2 lg:ease-soft clear-both block w-full whitespace-nowrap border-0 bg-transparent px-4 text-left font-normal text-slate-500 hover:bg-gray-200 hover:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:transition-colors lg:duration-300" href="">Semua</a>
-                                  </li>
-                                  <li>
-                                    <a class="py-1.2 lg:ease-soft clear-both block w-full whitespace-nowrap border-0 bg-transparent px-4 text-left font-normal text-slate-500 hover:bg-gray-200 hover:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:transition-colors lg:duration-300" href="">Surat Individu</a>
-                                  </li>
-                                  <li>
-                                    <a class="py-1.2 lg:ease-soft clear-both block w-full whitespace-nowrap border-0 bg-transparent px-4 text-left font-normal text-slate-500 hover:bg-gray-200 hover:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:transition-colors lg:duration-300" href="">Surat Kolektif</a>
-                                  </li>
-                                </ul>
-                              </div>
                         </div>
                     </div>
                 </form>

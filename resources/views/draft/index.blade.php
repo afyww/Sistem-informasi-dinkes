@@ -90,6 +90,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </main>
     @include('sweetalert::alert')
 </body>
