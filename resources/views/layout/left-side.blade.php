@@ -1,4 +1,4 @@
-<aside class="max-w-62.5 md:max-w-62.5 xl:max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-8 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between rounded-3xl  bg-white p-0 antialiased shadow-2xl transition-transform duration-200 xl:translate-x-0 xl:bg-transparent max-h-none md:max-h-none xl:max-h-none 2xl:max-h-none">
+<aside class="max-w-62.5 md:max-w-62.5 xl:max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-8 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between rounded-3xl  bg-white p-0 antialiased shadow-2xl transition-transform duration-200 xl:translate-x-0 xl:bg-transparent max-h-none md:max-h-none xl:max-h-none 2xl:max-h-none overflow-y-scroll">
         <i class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
             sidenav-close></i>
         <a class="block px-8 py-6 m-0 text-2xl whitespace-nowrap text-slate-700" href="{{ route('dashboard') }}">

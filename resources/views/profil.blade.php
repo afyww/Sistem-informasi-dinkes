@@ -10,7 +10,7 @@
         <!-- Navbar -->
         @include('layout.navbar')
         <div class="w-full px-6 mx-auto">
-            <div class="relative flex items-center p-0 mt-6 overflow-hidden bg-center bg-cover min-h-75 rounded-3xl">
+            <div class="relative flex items-center p-0 mt-1 overflow-hidden bg-center bg-cover min-h-75 rounded-3xl">
                 <span
                     class="absolute inset-y-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-red-200 to-red-700"></span>
             </div>

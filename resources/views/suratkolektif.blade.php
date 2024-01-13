@@ -21,7 +21,7 @@
                     <div class="">
                         <h1 class="text-2xl font-bold text-center">Input Surat Kolektif</h1>
                     </div>
-                    <form class="max-w-3xl mx-auto space-y-6" action="{{ route('kolektif-pdf') }}" method="post">
+                    <form id="myForm" onsubmit="resetForm()" target="_blank" class="max-w-3xl mx-auto space-y-6" action="{{ route('kolektif-pdf') }}" method="post">
                         @csrf
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-2">
                             <div class="space-y-2">
@@ -141,6 +141,12 @@
             </div>
         </div>
     </main>
+    <script>
+        // Function to reset the form after submission
+        function resetForm() {
+            document.getElementById("myForm").reset();
+        }
+    </script>    
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- Include jQuery UI -->

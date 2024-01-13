@@ -14,35 +14,28 @@
         <div class="p-6 mx-auto">
             <div class="bg-white border-solid shadow-soft-xl rounded-3xl bg-clip-border">
                 <div class="p-6 bg-white border-b-solid rounded-3xl">
-                    <h6>Riwayat Surat</h6>
+                <h6>Riwayat Surat</h6>
                 </div>
                 <form method="get" action="{{ route('filter') }}">
-                    <div class="space-y-5 p-2 xl:space-y-0 md:space-y-0">
-                        <div class="flex xl:mx-5 gap-2 ">
+                    <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-4 md:p-6">
+                        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                             <div>
-                                <label for="date" class=" text-stone-600">Dari
-                                    Bulan
-                                </label>
-                                <input type="date" name="pd_tgl" required
-                                    class="rounded-sm py-1 xl:px-4 border border-gray-100 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
-                                <label for="date" class=" text-stone-600">Sampai
-                                    Bulan
-                                </label>
-                                <input type="date" name="end_date" required
-                                    class="rounded-sm py-1 xl:px-4 border border-gray-100 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
-                                <button
-                                    class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br rounded-3xl text-sm px-8 py-2"
-                                    type="submit">Filter
-                                </button>
+                                <label for="pd_tgl" class="text-stone-600">Dari Bulan</label>
+                                <input type="date" id="pd_tgl" name="pd_tgl" required class="border-2 p-1 rounded-xl bg-gray-100" />
                             </div>
-                            <a href="{{ route('export') }}"
-                                class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br rounded-3xl text-sm px-8 py-2"
-                                type="submit">Export
-                            </a>
+                            <div>
+                                <label for="end_date" class="text-stone-600">Sampai Bulan</label>
+                                <input type="date" id="end_date" name="end_date" required class="border-2 p-1 rounded-xl bg-gray-100" />
+                            </div>
+                        </div>
+                        <div class="flex flex-col md:flex-row gap-2">
+                            <button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br rounded-3xl text-sm px-5 py-2 text-center">Filter</button>
+                            <a href="{{ route('export') }}" class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br font-medium rounded-3xl text-sm px-6 py-2 text-center">Export</a>
                         </div>
                     </div>
                 </form>
-                  
+                
+                
                 <div class="flex overflow-auto">
                     <table class="text-sm text-black w-full">
                         <thead class="text-xs text-black bg-gray-50">
@@ -121,7 +114,7 @@
                                     {{ $item['anggaran'] }}
                                 </td>
                                 <td class="px-6 py-4">
-                                   <form action="{{ url('download', $item['id']) }}" id="downloadButton" data-id="{{ $item['id'] }}">
+                                   <form target="_blank" action="{{ url('download', $item['id']) }}" id="downloadButton" data-id="{{ $item['id']  }}">
                                         <button 
                                             class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 
                                             hover:bg-gradient-to-br font-medium rounded-3xl text-sm px-5 py-2 text-center">Download</button>

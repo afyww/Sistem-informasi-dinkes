@@ -229,12 +229,6 @@ class PdfController extends Controller
             $surat->typesurat = $typesurat;
             $surat->save();
 
-            // Tambahkan tombol "Kembali ke Form" dengan JavaScript
-            $this->fpdf->SetTextColor(0, 0, 255);
-            $this->fpdf->SetFont('Arial', '', 14);
-            $this->fpdf->Cell(210, 1, '<< Kembali', 0, 0, 'L', false, route('suratkolektif'));
-            $this->fpdf->SetTextColor(0, 0, 0);
-
             $this->fpdf->Output();
         }
     }
@@ -397,12 +391,6 @@ class PdfController extends Controller
             $surat->typesurat = $typesurat;
             $surat->save();
 
-            // Tambahkan tombol "Kembali ke Form" dengan JavaScript
-            $this->fpdf->SetTextColor(0, 0, 255);
-            $this->fpdf->SetFont('Arial', '', 14);
-            $this->fpdf->Cell(210, 1, '<< Kembali', 0, 0, 'L', false, route('suratindividu'));
-            $this->fpdf->SetTextColor(0, 0, 0);
-
             $this->fpdf->Output();
         }
     }
@@ -555,12 +543,6 @@ class PdfController extends Controller
             $surat->anggaran = $anggaran;
             $surat->typesurat = $typesurat;
             $surat->save();
-
-            // Tambahkan tombol "Kembali ke Form" dengan JavaScript
-            $this->fpdf->SetTextColor(0, 0, 255);
-            $this->fpdf->SetFont('Arial', '', 14);
-            $this->fpdf->Cell(210, 1, '<< Kembali', 0, 0, 'L', false, route('suratindividu'));
-            $this->fpdf->SetTextColor(0, 0, 0);
 
             $this->fpdf->Output();
         }
@@ -756,12 +738,6 @@ class PdfController extends Controller
             $surat->typesurat = $typesurat;
             $surat->save();
 
-            // Tambahkan tombol "Kembali ke Form" dengan JavaScript
-            $this->fpdf->SetTextColor(0, 0, 255);
-            $this->fpdf->SetFont('Arial', '', 14);
-            $this->fpdf->Cell(210, 1, '<< Kembali', 0, 0, 'L', false, route('suratkolektif'));
-            $this->fpdf->SetTextColor(0, 0, 0);
-
             $this->fpdf->Output();
         }
     }
@@ -867,12 +843,6 @@ class PdfController extends Controller
             $this->fpdf->SetFont('Arial', '', 12);
             $this->fpdf->MultiCell(175, 0.5, ($namavip), 0, 'R', false);
             $this->fpdf->Ln(2);
-
-            // Tambahkan tombol "Kembali ke Form" dengan JavaScript
-            $this->fpdf->SetTextColor(0, 0, 255);
-            $this->fpdf->SetFont('Arial', '', 14);
-            $this->fpdf->Cell(210, 1, '<< Kembali', 0, 0, 'L', false, route('history'));
-            $this->fpdf->SetTextColor(0, 0, 0);
 
             $this->fpdf->Output();
 
@@ -995,12 +965,6 @@ class PdfController extends Controller
             $this->fpdf->SetFont('Arial', '', 12);
             $this->fpdf->MultiCell(175, 0.5, ($namavip), 0, 'R', false);
             $this->fpdf->Ln(2);
-
-            // Tambahkan tombol "Kembali ke Form" dengan JavaScript
-            $this->fpdf->SetTextColor(0, 0, 255);
-            $this->fpdf->SetFont('Arial', '', 14);
-            $this->fpdf->Cell(210, 1, '<< Kembali', 0, 0, 'L', false, route('history'));
-            $this->fpdf->SetTextColor(0, 0, 0);
 
             $this->fpdf->Output();
             return response($this->fpdf->Output('download.pdf', 'I'))

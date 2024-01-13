@@ -159,7 +159,7 @@
                         </p>
                     </div>
                     <div class="p-4">
-                        <div>
+                        <div class="">
                             <label for="monthSelect">Select Month:</label>
                             <select class="border bg-gray-100 p-2 rounded-xl" id="monthSelect" onchange="updateChart()">
                                 @foreach ($labels3 as $month3)
@@ -167,7 +167,7 @@
                                         {{ $selectedMonth3 == $month3 ? 'selected' : '' }}>{{ $month3 }}</option>
                                 @endforeach
                             </select>
-                            <canvas id="grafikAnggaran" width="100" height="20"></canvas>
+                            <canvas id="grafikAnggaran" width="100" height="35"></canvas>
                         </div>
                     </div>
                 </div>

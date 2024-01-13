@@ -21,7 +21,7 @@
                     <div class="">
                         <h1 class="text-2xl font-bold text-center">Input Surat Ulang</h1>
                     </div>
-                    <form class="max-w-3xl mx-auto space-y-6" action="{{ route('duplikat-pdf-individu') }}" method="post">
+                    <form target="_blank" class="max-w-3xl mx-auto space-y-6" action="{{ route('duplikat-pdf-individu') }}" method="post">
                         @csrf
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-2">
                             <div class="space-y-2">

@@ -16,7 +16,7 @@ class VipSeeder extends Seeder
         $vips = [
             [
                 "nama" => "Dani Miarso,S.KM",
-                "nip" => "Dani@gmail.com",
+                "nip" => "3260290",
                 "jabatan" => "Kepala Bidang",
                 "npwp" => "675858",
                 "nama_bank" => "BCA",

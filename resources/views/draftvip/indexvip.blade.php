@@ -48,7 +48,7 @@
                                 <th scope="col" class="px-2 py-4">
                                     NO.REKENING
                                 </th>
-                                <th scope="col" class="px-2 py-4">
+                                <th scope="col" class="px-20 py-4">
                                     ACTION
                                 </th>
                             </thead>
