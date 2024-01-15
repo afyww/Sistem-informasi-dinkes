@@ -127,31 +127,7 @@
                         </div>
                     </div>
                 </div>
-                <div
-                    class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
-                    <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
-                        <h6>Jumlah Pegawai Bertugas</h6>
-                        <p class="leading-normal text-sm">
-                            <i class="fa fa-arrow-up text-lime-500"></i>
-                        </p>
-                    </div>
-                    <div class="p-4">
-                        <div>
-                            <label for="monthSelect2">Select Month:</label>
-                            <select class="border bg-gray-100 p-2 rounded-xl" id="monthSelect2" onchange="updateChart2()">
-                                @foreach ($labels2 as $month)
-                                    <option value="{{ $month }}"
-                                        {{ $selectedMonth2 == $month ? 'selected' : '' }}>{{ $month }}</option>
-                                @endforeach
-                            </select>
-                            <canvas id="grafikPegawai" width="100" height="50"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-1">
-                <div
-                    class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+                <div class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
                     <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
                         <h6>Jumlah Pemakaian Anggaran</h6>
                         <p class="leading-normal text-sm">
@@ -168,6 +144,29 @@
                                 @endforeach
                             </select>
                             <canvas id="grafikAnggaran" width="100" height="35"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="grid grid-cols-1">
+                <div class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+                    <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
+                        <h6>Jumlah Pegawai Bertugas</h6>
+                        <p class="leading-normal text-sm">
+                            <i class="fa fa-arrow-up text-lime-500"></i>
+                        </p>
+                    </div>
+                    <div class="p-4">
+                        <div>
+                            <label for="monthSelect2">Select Month:</label>
+                            <select class="border bg-gray-100 p-2 rounded-xl" id="monthSelect2" onchange="updateChart2()">
+                                @foreach ($labels2 as $month)
+                                    <option value="{{ $month }}"
+                                        {{ $selectedMonth2 == $month ? 'selected' : '' }}>{{ $month }}</option>
+                                @endforeach
+                            </select>
+                            <canvas id="grafikPegawai" width="100" height="50"></canvas>
                         </div>
                     </div>
                 </div>
