@@ -141,12 +141,6 @@
             </div>
         </div>
     </main>
-    <script>
-        // Function to reset the form after submission
-        function resetForm() {
-            document.getElementById("myForm").reset();
-        }
-    </script>    
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- Include jQuery UI -->

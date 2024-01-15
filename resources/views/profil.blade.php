@@ -9,10 +9,10 @@
     <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-3xl transition-all duration-200">
         <!-- Navbar -->
         @include('layout.navbar')
-        <div class="w-full px-6 mx-auto">
+        <div class="w-full h-full px-6 mx-auto">
             <div class="relative flex items-center p-0 mt-1 overflow-hidden bg-center bg-cover min-h-75 rounded-3xl">
                 <span
-                    class="absolute inset-y-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-red-200 to-red-700"></span>
+                    class="absolute inset-y-0 w-full bg-center bg-cover bg-gradient-to-tl from-red-200 to-red-700"></span>
             </div>
             <div
                 class="relative flex flex-col flex-auto min-w-0 p-4 mx-6 -mt-16 overflow-hidden break-words border-0 shadow-blur rounded-3xl bg-white/80 bg-clip-border backdrop-blur-3xl backdrop-saturate-100">

@@ -31,6 +31,8 @@ class SuratController extends Controller
     }
     public function export() 
     {
+        
         return Excel::download(new SuratsExport, 'surats.xlsx');
+
     }
 }
