@@ -31,8 +31,10 @@ class PagesController extends Controller
         $labels = $grafik->keys();
         $data = $grafik->values();
 
+        //chart2
         $selectedYear2 = $request->input('year', date('Y'));
         $selectedMonth2 = $request->input('month', date('F'));
+
 
         $grafik2 = Surat::selectRaw("COUNT(*) as count, nama, DATE_FORMAT(tgl_kegiatan, '%M') as month_name, MONTH(tgl_kegiatan) as month_number")
             ->whereYear('tgl_kegiatan', $selectedYear2)

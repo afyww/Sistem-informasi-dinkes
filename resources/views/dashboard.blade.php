@@ -91,7 +91,7 @@
                             <div class="-mx-3">
                                 <div class="px-3">
                                     <div>
-                                        <p class="mb-0 font-sans font-semibold leading-normal text-sm">Anggaran
+                                        <p class="mb-0 font-sans font-semibold leading-normal text-sm">Sumber Dana
                                             Tertinggi
                                         </p>
                                         <h5 class="mb-0 font-bold">
@@ -129,7 +129,7 @@
                 </div>
                 <div class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
                     <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
-                        <h6>Jumlah Pemakaian Anggaran</h6>
+                        <h6>Surat Tugas Berdasarkan Sumber Dana</h6>
                         <p class="leading-normal text-sm">
                             <i class="fa fa-arrow-up text-lime-500"></i>
                         </p>

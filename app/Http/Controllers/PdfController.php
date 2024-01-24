@@ -188,10 +188,10 @@ class PdfController extends Controller
             $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(0, 1, "Tempat                               : $tempat", 0, 'L');
-            $this->fpdf->Ln(17);
+            $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(0, 1, "Anggaran                              : $anggaran", 0, 'L');
-            $this->fpdf->Ln(17);
+            $this->fpdf->Ln(10);
             $this->fpdf->SetX(10);
 
             $this->fpdf->MultiCell(0, 0.5, 'Demikian surat tugas ini dibuat untuk dapat dilaksanakan sebagaimana mestinya.', 0, 'L');
@@ -206,8 +206,20 @@ class PdfController extends Controller
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
+              
+            $this->fpdf->MultiCell(175, 0.5, ($jbtvip), 0, 'R', false);
+            $this->fpdf->Ln(17); // Menambah spasi 5 unit setelah MultiCell pertama
+            $this->fpdf->SetX(10);
+
             $this->fpdf->MultiCell(175, 0.5, ($peg), 0, 'R', false);
-            $this->fpdf->Ln(2);
+            $this->fpdf->Ln(5); // Menambah spasi 5 unit setelah MultiCell kedua
+            $this->fpdf->SetX(10);
+
+            $this->fpdf->MultiCell(175, 0.5, "($nip)", 0, 'R', false);
+            $this->fpdf->Ln(0); // Menambah spasi 5 unit setelah MultiCell ketiga
+            $this->fpdf->SetX(10);
+            
+            $this->fpdf->Ln(2); // Spasi tambahan di antara blok-blok teks
 
             // Simpan data surat ke dalam database
             $surat = new Surat();
@@ -350,10 +362,10 @@ class PdfController extends Controller
             $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(0, 1, "Tempat                               : $tempat", 0, 'L');
-            $this->fpdf->Ln(17);
+            $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(0, 1, "Anggaran                            : $anggaran", 0, 'L');
-            $this->fpdf->Ln(17);
+            $this->fpdf->Ln(10);
             $this->fpdf->SetX(10);
 
             $this->fpdf->MultiCell(0, 0.5, 'Demikian surat tugas ini dibuat untuk dapat dilaksanakan sebagaimana mestinya.', 0, 'L');
@@ -361,16 +373,28 @@ class PdfController extends Controller
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(150, 1, "Dikeluarkan di                     : $keluar", 0, 'R');
             $this->fpdf->Ln(7);
-            $this->fpdf->SetX(10);
+            $this->fpdf->SetX(16);
             $this->fpdf->MultiCell(150, 1, "Pada Tanggal                     : $pdtgl", 0, 'R');
-            $this->fpdf->Ln(47);
+            $this->fpdf->Ln(45);
             $this->fpdf->SetX(10);
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
-            $this->fpdf->MultiCell(175, 0.5, ($peg), 0, 'R', false);
-            $this->fpdf->Ln(2);
 
+            $this->fpdf->MultiCell(175, 0.5, ($jbtvip), 0, 'R', false);
+            $this->fpdf->Ln(17); // Menambah spasi 5 unit setelah MultiCell pertama
+            $this->fpdf->SetX(10);
+
+            $this->fpdf->MultiCell(175, 0.5, ($peg), 0, 'R', false);
+            $this->fpdf->Ln(5); // Menambah spasi 5 unit setelah MultiCell kedua
+            $this->fpdf->SetX(10);
+
+            $this->fpdf->MultiCell(175, 0.5, "($nip)", 0, 'R', false);
+            $this->fpdf->Ln(0); // Menambah spasi 5 unit setelah MultiCell ketiga
+            $this->fpdf->SetX(10);
+            
+            $this->fpdf->Ln(2); // Spasi tambahan di antara blok-blok teks
+            
             // Simpan data surat ke dalam database
             $surat = new Surat();
             $surat->no_surat = $no_surat;
@@ -503,26 +527,40 @@ class PdfController extends Controller
             $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(0, 1, "Tempat                               : $tempat", 0, 'L');
-            $this->fpdf->Ln(17);
+            $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(0, 1, "Anggaran                            : $anggaran", 0, 'L');
-            $this->fpdf->Ln(17);
+            $this->fpdf->Ln(10);
             $this->fpdf->SetX(10);
 
+           
             $this->fpdf->MultiCell(0, 0.5, 'Demikian surat tugas ini dibuat untuk dapat dilaksanakan sebagaimana mestinya.', 0, 'L');
             $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(150, 1, "Dikeluarkan di                     : $keluar", 0, 'R');
             $this->fpdf->Ln(7);
-            $this->fpdf->SetX(10);
+            $this->fpdf->SetX(16);
             $this->fpdf->MultiCell(150, 1, "Pada Tanggal                     : $pdtgl", 0, 'R');
-            $this->fpdf->Ln(47);
+            $this->fpdf->Ln(45);
             $this->fpdf->SetX(10);
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
+
+            $this->fpdf->MultiCell(175, 0.5, ($jbtvip), 0, 'R', false);
+            $this->fpdf->Ln(17); // Menambah spasi 5 unit setelah MultiCell pertama
+            $this->fpdf->SetX(10);
+
             $this->fpdf->MultiCell(175, 0.5, ($peg), 0, 'R', false);
-            $this->fpdf->Ln(2);
+            $this->fpdf->Ln(5); // Menambah spasi 5 unit setelah MultiCell kedua
+            $this->fpdf->SetX(10);
+
+            $this->fpdf->MultiCell(175, 0.5, "($nip)", 0, 'R', false);
+            $this->fpdf->Ln(0); // Menambah spasi 5 unit setelah MultiCell ketiga
+            $this->fpdf->SetX(10);
+            
+            $this->fpdf->Ln(2); // Spasi tambahan di antara blok-blok teks
+
 
             // Simpan data surat ke dalam database
             $surat = new Surat();
@@ -703,20 +741,34 @@ class PdfController extends Controller
             $this->fpdf->Ln(17);
             $this->fpdf->SetX(10);
 
+           
             $this->fpdf->MultiCell(0, 0.5, 'Demikian surat tugas ini dibuat untuk dapat dilaksanakan sebagaimana mestinya.', 0, 'L');
             $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(150, 1, "Dikeluarkan di                     : $keluar", 0, 'R');
             $this->fpdf->Ln(7);
-            $this->fpdf->SetX(10);
+            $this->fpdf->SetX(16);
             $this->fpdf->MultiCell(150, 1, "Pada Tanggal                     : $pdtgl", 0, 'R');
-            $this->fpdf->Ln(47);
+            $this->fpdf->Ln(45);
             $this->fpdf->SetX(10);
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
+
+            $this->fpdf->MultiCell(175, 0.5, ($jbtvip), 0, 'R', false);
+            $this->fpdf->Ln(17); // Menambah spasi 5 unit setelah MultiCell pertama
+            $this->fpdf->SetX(10);
+
             $this->fpdf->MultiCell(175, 0.5, ($peg), 0, 'R', false);
-            $this->fpdf->Ln(2);
+            $this->fpdf->Ln(5); // Menambah spasi 5 unit setelah MultiCell kedua
+            $this->fpdf->SetX(10);
+
+            $this->fpdf->MultiCell(175, 0.5, "($nip)", 0, 'R', false);
+            $this->fpdf->Ln(0); // Menambah spasi 5 unit setelah MultiCell ketiga
+            $this->fpdf->SetX(10);
+            
+            $this->fpdf->Ln(2); // Spasi tambahan di antara blok-blok teks
+
 
             // Simpan data surat ke dalam database
             $surat = new Surat();
@@ -823,26 +875,39 @@ class PdfController extends Controller
             $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(0, 1, "Tempat                               : $tempat", 0, 'L');
-            $this->fpdf->Ln(17);
+            $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(0, 1, "Anggaran                            : $anggaran", 0, 'L');
-            $this->fpdf->Ln(17);
+            $this->fpdf->Ln(10);
             $this->fpdf->SetX(10);
 
+            
             $this->fpdf->MultiCell(0, 0.5, 'Demikian surat tugas ini dibuat untuk dapat dilaksanakan sebagaimana mestinya.', 0, 'L');
             $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(150, 1, "Dikeluarkan di                     : $keluar", 0, 'R');
             $this->fpdf->Ln(7);
-            $this->fpdf->SetX(10);
+            $this->fpdf->SetX(16);
             $this->fpdf->MultiCell(150, 1, "Pada Tanggal                     : $pd_tgl", 0, 'R');
-            $this->fpdf->Ln(47);
+            $this->fpdf->Ln(45);
             $this->fpdf->SetX(10);
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
+
+            $this->fpdf->MultiCell(175, 0.5, ($jbtvip), 0, 'R', false);
+            $this->fpdf->Ln(17); // Menambah spasi 5 unit setelah MultiCell pertama
+            $this->fpdf->SetX(10);
+
             $this->fpdf->MultiCell(175, 0.5, ($namavip), 0, 'R', false);
-            $this->fpdf->Ln(2);
+            $this->fpdf->Ln(5); // Menambah spasi 5 unit setelah MultiCell kedua
+            $this->fpdf->SetX(10);
+
+            $this->fpdf->MultiCell(175, 0.5, "($nipvip)", 0, 'R', false);
+            $this->fpdf->Ln(0); // Menambah spasi 5 unit setelah MultiCell ketiga
+            $this->fpdf->SetX(10);
+            
+            $this->fpdf->Ln(2); // Spasi tambahan di antara blok-blok teks
 
             $this->fpdf->Output();
 
@@ -945,10 +1010,10 @@ class PdfController extends Controller
             $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(0, 1, "Tempat                               : $tempat", 0, 'L');
-            $this->fpdf->Ln(17);
+            $this->fpdf->Ln(7);
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(0, 1, "Anggaran                              : $anggaran", 0, 'L');
-            $this->fpdf->Ln(17);
+            $this->fpdf->Ln(10);
             $this->fpdf->SetX(10);
 
             $this->fpdf->MultiCell(0, 0.5, 'Demikian surat tugas ini dibuat untuk dapat dilaksanakan sebagaimana mestinya.', 0, 'L');
@@ -956,15 +1021,27 @@ class PdfController extends Controller
             $this->fpdf->SetX(10);
             $this->fpdf->MultiCell(150, 1, "Dikeluarkan di                     : $keluar", 0, 'R');
             $this->fpdf->Ln(7);
-            $this->fpdf->SetX(10);
+            $this->fpdf->SetX(16);
             $this->fpdf->MultiCell(150, 1, "Pada Tanggal                     : $pd_tgl", 0, 'R');
             $this->fpdf->Ln(47);
             $this->fpdf->SetX(10);
 
             // Menggunakan MultiCell dengan teks berformat
             $this->fpdf->SetFont('Arial', '', 12);
+            
+            $this->fpdf->MultiCell(175, 0.5, ($jbtvip), 0, 'R', false);
+            $this->fpdf->Ln(17); // Menambah spasi 5 unit setelah MultiCell pertama
+            $this->fpdf->SetX(10);
+
             $this->fpdf->MultiCell(175, 0.5, ($namavip), 0, 'R', false);
-            $this->fpdf->Ln(2);
+            $this->fpdf->Ln(5); // Menambah spasi 5 unit setelah MultiCell kedua
+            $this->fpdf->SetX(10);
+
+            $this->fpdf->MultiCell(175, 0.5, "($nipvip)", 0, 'R', false);
+            $this->fpdf->Ln(0); // Menambah spasi 5 unit setelah MultiCell ketiga
+            $this->fpdf->SetX(10);
+            
+            $this->fpdf->Ln(2); // Spasi tambahan di antara blok-blok teks
 
             $this->fpdf->Output();
             return response($this->fpdf->Output('download.pdf', 'I'))

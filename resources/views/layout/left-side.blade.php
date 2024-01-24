@@ -13,7 +13,7 @@
         <ul class="flex flex-col xl:flex-col md:flex-col 2xl:flex-col">
             <li class="mt-5">
                 <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:text-black"
-                    href="/dashboard">
+                    href="{{ route('dashboard') }}">
                     <div class="bg-gradient-to-tl from-red-700 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <svg width="15px" height="15px" viewBox="0 0 45 40" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
