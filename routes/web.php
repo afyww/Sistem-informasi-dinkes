@@ -9,7 +9,7 @@ use App\Http\Controllers\SuratController;
 use App\Http\Controllers\VipController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('masuk');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
