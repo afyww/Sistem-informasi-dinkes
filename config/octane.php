@@ -36,8 +36,12 @@ return [
     | Supported: "roadrunner", "swoole", "frankenphp"
     |
     */
+    'server' => 'roadrunner',
+    'workers' => env('OCTANE_WORKERS', 4),
+    'host' => env('OCTANE_HOST', '127.0.0.1'),
+    'port' => env('OCTANE_PORT', 8000),
 
-    'server' => env('OCTANE_SERVER', 'roadrunner'),
+
 
     /*
     |--------------------------------------------------------------------------
